@@ -3,35 +3,38 @@
 #define SCREEN_WIDTH 940
 #define SCREEN_HEIGHT 680
 
-int main(int argc, char* args[]){
-    SDL_Window* window = NULL;
-    SDL_Surface* screenSurface = NULL;
-    if (SDL_Init( SDL_INIT_VIDEO)< 0){
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
+int main(int argc, char *args[]){
+    SDL_Window *window = NULL; //declaring pointer
+    SDL_Surface *screenSurface = NULL; //declaring pointer
+    
+    SDL_Init(SDL_INIT_VIDEO); //Initalization of SDL2
+    
+    window = SDL_CreateWindow( 
+        "Pong",
+        SDL_WINDOWPOS_UNDEFINED,
+        SDL_WINDOWPOS_UNDEFINED,
+        SCREEN_WIDTH, 
+        SCREEN_HEIGHT, 
+        SDL_WINDOW_SHOWN 
+    );
+    //Checks if window was successfully created
+    if(window == NULL){
+        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
     }
-    else
-    {
-        window = SDL_CreateWindow( "Pong", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-        //Create window
-        if( window == NULL )
-        {
-            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
-        }
-     else
-        {
-            //Get window surface
-            screenSurface = SDL_GetWindowSurface( window );
+    else{
+        //Get window surface
+        screenSurface = SDL_GetWindowSurface(window);
 
-            //Fill the surface white
-            SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0x0E, 0x0E, 0x0E ) );
+        //Fill the surface with desired color
+        SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 32, 32, 32));
             
-            //Update the surface
-            SDL_UpdateWindowSurface( window );
+        //Update the surface
+        SDL_UpdateWindowSurface(window);
 
-            //Wait two seconds
-            SDL_Delay( 9000 );
-        }
+        //Wait for 9 seconds
+        SDL_Delay(9000);
     }
+    
     //Destroy window
     SDL_DestroyWindow( window );
 
