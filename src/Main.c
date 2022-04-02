@@ -1,8 +1,7 @@
 #include<stdio.h>
 #include<SDL.h>
-
-const int SCREEN_WIDTH = 940;
-const int SCREEN_HEIGHT = 680;
+#define SCREEN_WIDTH 940
+#define SCREEN_HEIGHT 680
 
 int main(int argc, char* args[]){
     SDL_Window* window = NULL;
@@ -12,8 +11,8 @@ int main(int argc, char* args[]){
     }
     else
     {
-        //Create window
         window = SDL_CreateWindow( "Pong", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        //Create window
         if( window == NULL )
         {
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -40,7 +39,4 @@ int main(int argc, char* args[]){
     SDL_Quit();
 
     return 0;
-   
-    
-
 }
